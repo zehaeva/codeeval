@@ -1,11 +1,9 @@
 import sys
 def am_i_happy(my_number, seen):
-    y = 0
-    for x in str(my_number):
-        y += int(x) * int(x)
-    if y == 1:
+    y = sum(map(lambda x : int(x) ** 2, str(my_number)))
+    if y in [1,10,100,13,31,130,103]:
         my_return = 1
-    elif y in seen:
+    elif y in seen or len(seen) > 3:
         my_return = 0
     else:
         seen.append(y)
@@ -14,7 +12,5 @@ def am_i_happy(my_number, seen):
     
 test_cases = open(sys.argv[1], 'r')
 for test in test_cases:
-    my_list = test.strip()
-    seen = []
-    print(am_i_happy(my_list, seen))
+    print(am_i_happy(test.strip(), []))
 test_cases.close()
