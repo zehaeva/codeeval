@@ -1,5 +1,5 @@
 import System.Environment (getArgs)
-fb (x:y:n:_) = [if num `mod` x == 0 && num `mod` y == 0 then "FB" else if num `mod` x == 0 then "F" else if num `mod` y == 0 then "B" else show num | num <- [1..n]]
+fb (x:y:n:_) = [case (mod num x, mod num y) of (0,0) -> "FB"; (0,_) -> "F"; (_,0) -> "B";_ -> show num | num <- [1..n]]
 
 con :: [String] -> [Int]
 con = map read
